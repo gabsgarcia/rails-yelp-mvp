@@ -12,7 +12,7 @@ category = %w[chinese italian japanese french belgian]
 # TODO: Write a seed to insert 5 restaurants in the database
 puts "Cleaning database..."
 Restaurant.destroy_all
-
+puts "Done..."
 puts 'Creating 5 fake restaurants...'
 5.times do
   restaurant = Restaurant.new(
