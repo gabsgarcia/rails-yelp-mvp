@@ -4,6 +4,10 @@ class RestaurantsController < ApplicationController
   def index
     @restaurants = Restaurant.all
   end
+
+  def new
+    @restaurant = Restaurant.new(restaurant_params)
+  end
   # A visitor can add a new restaurant, and be redirected to the show view of that new restaurant.
 
   def create
@@ -21,7 +25,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :address, :phone_number, :category)
+    params.require(:restaurants).permit(:name, :address, :phone_number, :category)
   end
 
 end
