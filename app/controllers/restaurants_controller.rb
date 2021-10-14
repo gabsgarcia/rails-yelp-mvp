@@ -6,15 +6,17 @@ class RestaurantsController < ApplicationController
   end
 
   def new
-    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant = Restaurant.new # GET
   end
   # A visitor can add a new restaurant, and be redirected to the show view of that new restaurant.
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.save
-
-    redirect_to restaurant_path(@restaurant)
+    @restaurant = Restaurant.new(restaurant_params) # GET POST
+    if @restaurant.save
+      redirect_to restaurant_path(@restaurant)
+    else
+      render "new"
+    end
   end
 
   # A visitor can see the details of a restaurant, with all the reviews related to the restaurant.
@@ -25,7 +27,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurants).permit(:name, :address, :phone_number, :category)
+    params.require(:restaurant).permit(:name, :address, :phone_number, :category)
   end
 
 end
